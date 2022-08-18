@@ -1,15 +1,20 @@
 package com.jdroid.encriptacionrsa;
 
+import static android.os.Environment.getExternalStorageDirectory;
+
 import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
@@ -24,7 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -33,6 +38,8 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -44,13 +51,14 @@ import java.io.OutputStreamWriter;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.util.List;
 import java.util.Objects;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 Button searchEncrypt, searchDecrypt;
 ImageButton startEncrypt, cancelEncrypt, startDecrypt, cancelDecrypt;
 ImageView statusEncrypt, statusDecrypt;
@@ -58,6 +66,7 @@ TextView textStatusEncrypt, textStatusDecrypt, selectedFileEncrypt, selectedFile
 ProgressBar progressBarEncrypt, progressBarDecrypt;
 DrawerLayout drawerLayout;
 String str="", path="";
+WifiManager wifiManager;
 
 float bytes;
 
@@ -75,6 +84,10 @@ float bytes;
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, myToolbar, R.string.drawerOpen, R.string.drawerClose);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        //NavigationView
+        final NavigationView navView = findViewById(R.id.navView);
+        navView.setNavigationItemSelectedListener(this);
 
         //NOTIFICACIONES
         createNotificationChannel();
@@ -115,6 +128,15 @@ float bytes;
         cancelDecrypt.setOnClickListener(this);
     }
 
+    private void scanSuccess() {
+        List<ScanResult> results = wifiManager.getScanResults();
+    }
+
+    private void scanFailure() {
+        // handle failure: new scan did NOT succeed
+        // consider using old scan results: these are the OLD results!
+        List<ScanResult> results = wifiManager.getScanResults();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -387,7 +409,7 @@ float bytes;
             case R.id.searchEncrypt:
                 str="";
                 path="";
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.setType("*/*");
                 startActivityForResult(Intent.createChooser(intent, "Choose File"), 1);
                 break;
@@ -415,11 +437,13 @@ float bytes;
                         try {
                             rsa.genKeyPair(512 * (int) Math.ceil(bytes / 53));
                             String aux[] = path.split("\\.");
-                            rsa.saveToDiskPrivateKey(getExternalFilesDir(aux[0]), aux);
-                            rsa.saveToDiskPublicKey(getExternalFilesDir(aux[0]), aux[0]);
+                            File ruta_sd = new File(getExternalStorageDirectory()+"/Download/", aux[0]);
+                            ruta_sd.mkdirs();
+                            rsa.saveToDiskPrivateKey(ruta_sd, aux);
+                            rsa.saveToDiskPublicKey(ruta_sd, aux[0]);
                             String secure = rsa.Encrypt(str);
-                            File ruta_sd = getExternalFilesDir(aux[0]);
-                            File f = new File(ruta_sd.getAbsolutePath(), aux[0] + ".rsa");
+
+                            File f = new File(getExternalStorageDirectory()+"/Download/"+aux[0]+"/", aux[0] + ".rsa");
                             OutputStreamWriter fout = new OutputStreamWriter(new FileOutputStream(f));
                             fout.write(secure);
                             fout.close();
@@ -488,11 +512,11 @@ float bytes;
                         String aux[]=path.split("\\.");
                         String extension= null;
                         try {
-                            extension = rsa.openFromDiskPrivateKey(getExternalFilesDir(aux[0]),aux[0]+"Key.pri");
-                            rsa.openFromDiskPublicKey(getExternalFilesDir(aux[0]),aux[0]+"Key.pub");
+                            File directory = new File(getExternalStorageDirectory()+"/Download/"+aux[0]+"/");
+                            extension = rsa.openFromDiskPrivateKey(directory,aux[0]+"Key.pri");
+                            rsa.openFromDiskPublicKey(directory,aux[0]+"Key.pub");
                             String unsecure = rsa.Decrypt(str);
-                            File ruta_sd = getExternalFilesDir(aux[0]);
-                            File f = new File(ruta_sd.getAbsolutePath(), aux[0]+"."+extension);
+                            File f = new File(directory, aux[0]+"."+extension);
                             OutputStreamWriter fout = new OutputStreamWriter(new FileOutputStream(f));
                             fout.write(unsecure);
                             fout.close();
@@ -528,5 +552,18 @@ float bytes;
                 searchEncrypt.setEnabled(true);
                 break;
         }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int itemId = menuItem.getItemId();
+        if (itemId == R.id.wifi) {
+            menuItem.setChecked(true);
+
+        } else if (itemId == R.id.defecto) {
+            menuItem.setChecked(true);
+        }
+        Toast.makeText(getApplicationContext(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+        return false;
     }
 }

@@ -1,42 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/conections"
+        android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@android:drawable/ic_menu_camera"
-            android:title="Camera" />
+            android:id="@+id/wifi"
+            android:checkable="true"
+            android:title="Wifi"
+            app:actionLayout="@layout/switch_item"
+            app:showAsAction="always"></item>
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@android:drawable/ic_menu_gallery"
-            android:title="Galeria" />
+            android:id="@+id/bluetooth"
+            android:title="Bluetooth" />
     </group>
 
     <group
-        android:id="@+id/group1"
+        android:id="@+id/Colors"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/defecto"
             android:icon="@android:drawable/ic_menu_manage"
-            android:title="Herramientas" />
+            android:title="Por defecto" />
+        <item
+            android:id="@+id/blue"
+            android:title="Azul" />
+        <item
+            android:id="@+id/yellow"
+            android:title="Amarillo" />
     </group>
-
-    <item android:title="Group">
-        <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/nav_share"
-                    android:icon="@android:drawable/ic_menu_share"
-                    android:title="Compartir" />
-
-                <item
-                    android:id="@+id/nav_send"
-                    android:icon="@android:drawable/ic_menu_send"
-                    android:title="Enviar" />
-            </group>
-        </menu>
-    </item>
 
 </menu>
