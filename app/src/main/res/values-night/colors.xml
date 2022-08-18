@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000</color>
+    <color name="colorPrimaryDark">#000</color>
+    <color name="colorAccent">#1976D2</color>
+    <color name="background">#000000</color>
+    <color name="cardView">#191919</color>
+    <color name="texto">#FFF</color>
+    <color name="boton">#00796B</color>
+    <color name="backgroundTintButton">#2c2c2c</color>
+    <color name="navBar">#000</color>
+    <color name="disableButton">#B3333333</color>
+    <color name="enableButton">#00FFFFFF</color>
+    <color name="secondActivityColorPrimary">#000</color>
+    <color name="secondActivityColorPrimaryDark">#000000</color>
+    <color name="secondActivityColorAccent">#AD1457</color>
+    <color name="secondActivityColorNavBar">#000000</color>
+</resources>

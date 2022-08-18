@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RSA encryption</string>
+    <string name="titleEncryption">Encryption Service</string>
+    <string name="titleDecryption">Decryption Service</string>
+    <string name="examinar">Search...</string>
+    <string name="SelectFileEncrypt">Select file to encrypt</string>
+    <string name="SelectFileDecrypt">Select file to decrypt</string>
+    <string name="encriptar">Encrypt</string>
+    <string name="cancelar">Cancel</string>
+    <string name="encriptado">Encrypt successfully</string>
+    <string name="desencriptado">Decrypt successfully</string>
+    <string name="errorEncrypt">Encryption error</string>
+    <string name="channel_name">Main</string>
+    <string name="channel_description">Default</string>
+    <string name="titleEncryptNotification">Encrypt in progress</string>
+    <string name="bodyTextEncryptNotification">Wait while encrypt your file</string>
+    <string name="errorDecrypt">Decryption error</string>
+    <string name="finishEncrypt">Encryption done successfully</string>
+    <string name="selectedFile">Selected file:</string>
+    <string name="about">About</string>
+    <string name="titleDecryptNotification">Decrypt in progress</string>
+    <string name="bodyTextDecryptNotification">Wait while decrypt your file</string>
+    <string name="finishDecrypt">Decrypt done successfully</string>
+    <string name="waitEncrypt">Wait until encrypt your file</string>
+    <string name="waitDecrypt">Wait until decrypt your file</string>
+    <string name="desencriptar">decrypt</string>
+</resources>

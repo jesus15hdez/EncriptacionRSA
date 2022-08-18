@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Encriptación RSA</string>
+    <string name="examinar">Examinar</string>
+    <string name="selectedFile">Archivo seleccionado:</string>
+    <!-- DRAWERVIEW -->
+    <string name="drawerOpen" translatable="false">Abierto</string>
+    <string name="drawerClose" translatable="false">Cerrado</string>
+    <!-- AVISO DE SELECCION DE ARCHIVO -->
+    <string name="SelectFileEncrypt">Seleccione el archivo a encriptar</string>
+    <string name="SelectFileDecrypt">Seleccione el archivo a desencriptar</string>
+    <!-- DESCRIPCION DE BOTONES -->
+    <string name="encriptar">Encriptar</string>
+    <string name="desencriptar">Desencriptar</string>
+    <string name="cancelar">Cancelar</string>
+    <!-- SERVICIO DE ENCRIPTADO -->
+    <string name="titleEncryption">Servicio de Encriptación</string>
+    <string name="encriptado">Encriptación satisfactoria</string>
+    <string name="waitEncrypt">Espere, encriptando su archivo</string>
+    <string name="errorEncrypt">Error al encriptar el archivo</string>
+    <!-- SERVICIO DE DESENCRIPTADO -->
+    <string name="titleDecryption">Servicio de Desencriptación</string>
+    <string name="desencriptado">Desencriptado correctamente</string>
+    <string name="waitDecrypt">Espere, desencriptando su archivo</string>
+    <string name="errorDecrypt">Error al desencriptar el archivo</string>
+    <!-- NOTIFICACIONES -->
+    <string name="channel_name">Estado de tareas</string>
+    <string name="channel_description">Estado actual del servicio</string>
+    <!-- N1 -->
+    <string name="titleEncryptNotification">Encriptación en proceso</string>
+    <string name="bodyTextEncryptNotification">Espere mientras se encripta su archivo</string>
+    <string name="finishEncrypt">Encriptación realizada satisfactoriamente</string>
+    <!-- N2 -->
+    <string name="titleDecryptNotification">Desencriptado en proceso</string>
+    <string name="bodyTextDecryptNotification">Espere mientras se desencripta su archivo</string>
+    <string name="finishDecrypt">Desencriptado satisfactoriamente</string>
+
+    <!-- BARRA DE HERRAMIENTAS -->
+    <string name="about">Acerca de</string>
+
+    <!-- REFERENCIAS DE ICONOS -->
+    <string name="R1" translatable="false">Eucalyp</string>
+    <string name="R2" translatable="false">Freepik</string>
+    <string name="R3" translatable="false">dDara</string>
+</resources>

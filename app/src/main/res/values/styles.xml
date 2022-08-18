@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/navBar</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+    <style name="secondActivity" parent="Theme.AppCompat.DayNight">
+        <item name="colorPrimary">@color/secondActivityColorPrimary</item>
+        <item name="colorPrimaryDark">@color/secondActivityColorPrimaryDark</item>
+        <item name="colorAccent">@color/secondActivityColorAccent</item>
+        <item name="android:navigationBarColor">@color/secondActivityColorNavBar</item>
+    </style>
+    <style name="drawerView">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+    <style name="cardViews">
+        <item name="cardBackgroundColor">@color/cardView</item>
+        <item name="android:textColor">@color/texto</item>
+    </style>
+
+</resources>
