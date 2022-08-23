@@ -548,7 +548,7 @@ float bytes;
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int itemId = menuItem.getItemId();
-        menuItem.setChecked(true);
+        //menuItem.setChecked(true);
         Toast.makeText(getApplicationContext(), menuItem.getTitle(), Toast.LENGTH_SHORT).show();
         return false;
     }
