@@ -10,13 +10,14 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
     <style name="secondActivity" parent="Theme.AppCompat.DayNight">
-        <item name="colorPrimary">@color/secondActivityColorPrimary</item>
-        <item name="colorPrimaryDark">@color/secondActivityColorPrimaryDark</item>
-        <item name="colorAccent">@color/secondActivityColorAccent</item>
-        <item name="android:navigationBarColor">@color/secondActivityColorNavBar</item>
+        <item name="colorPrimary">@color/material_dynamic_primary40</item>
+        <item name="colorPrimaryDark">@color/material_dynamic_primary30</item>
+        <item name="colorAccent">@color/material_dynamic_secondary30</item>
+        <item name="android:navigationBarColor">@color/material_dynamic_primary30</item>
     </style>
     <style name="drawerView">
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
     <style name="cardViews">
         <item name="cardBackgroundColor">@color/cardView</item>

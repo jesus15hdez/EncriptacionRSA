@@ -2,19 +2,15 @@ package com.jdroid.encriptacionrsa;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
-import android.net.wifi.ScanResult;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
@@ -51,12 +47,12 @@ import java.io.OutputStreamWriter;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.List;
 import java.util.Objects;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 Button searchEncrypt, searchDecrypt;
@@ -66,7 +62,6 @@ TextView textStatusEncrypt, textStatusDecrypt, selectedFileEncrypt, selectedFile
 ProgressBar progressBarEncrypt, progressBarDecrypt;
 DrawerLayout drawerLayout;
 String str="", path="";
-WifiManager wifiManager;
 
 float bytes;
 
@@ -74,6 +69,10 @@ float bytes;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(savedInstanceState == null){
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        }
 
         //BARRA DE HERRAMIENTAS TOOLBAR
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -126,16 +125,6 @@ float bytes;
         searchDecrypt.setOnClickListener(this);
         startDecrypt.setOnClickListener(this);
         cancelDecrypt.setOnClickListener(this);
-    }
-
-    private void scanSuccess() {
-        List<ScanResult> results = wifiManager.getScanResults();
-    }
-
-    private void scanFailure() {
-        // handle failure: new scan did NOT succeed
-        // consider using old scan results: these are the OLD results!
-        List<ScanResult> results = wifiManager.getScanResults();
     }
 
     @Override
@@ -226,6 +215,7 @@ float bytes;
         }
     }
 
+    @SuppressLint("Range")
     private String getNameFile(Uri uri) {
         String displayName = "";
 
@@ -250,6 +240,7 @@ float bytes;
         return displayName;
     }
 
+    @SuppressLint("Range")
     private String getSizeFile(Uri uri) {
         String size = "";
 
