@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#f50057</color>
-    <color name="colorPrimaryDark">#ab003c</color>
-    <color name="colorAccent">#f73378</color>
     <color name="background">#EDEDED</color>
     <color name="cardView">#FFF</color>
     <color name="texto">#000</color>
@@ -11,8 +8,5 @@
     <color name="navBar">#C2185B</color>
     <color name="disableButton">#CDF1F1F1</color>
     <color name="enableButton">#00FFFFFF</color>
-    <color name="secondActivityColorPrimary">#0277BD</color>
-    <color name="secondActivityColorPrimaryDark">#1565C0</color>
-    <color name="secondActivityColorAccent">#D81B60</color>
     <color name="secondActivityColorNavBar">#1565c0</color>
 </resources>
