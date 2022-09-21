@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-
-    <gradient
-        android:startColor="@color/colorPrimaryDark"
-        android:endColor="@color/colorPrimary"
-        android:angle="1"/>
-</shape>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:left="3dp"
+    android:right="3dp">
+    <shape android:shape="rectangle">
+        <gradient
+            android:startColor="@color/cardView"
+            android:endColor="@color/cardView"
+            android:angle="1"/>
+        <corners
+            android:radius="32dp"
+            />
+    </shape>
+</item>
+</layer-list>
